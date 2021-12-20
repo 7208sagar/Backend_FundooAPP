@@ -1,0 +1,15 @@
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\bin\Debug\netcoreapp3.1\BussinessLayer.deps.json
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\bin\Debug\netcoreapp3.1\BussinessLayer.dll
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\bin\Debug\netcoreapp3.1\BussinessLayer.pdb
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\bin\Debug\netcoreapp3.1\CommonLayer.dll
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.dll
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\bin\Debug\netcoreapp3.1\RepositoryLayer.pdb
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\bin\Debug\netcoreapp3.1\CommonLayer.pdb
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\obj\Debug\netcoreapp3.1\BussinessLayer.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\obj\Debug\netcoreapp3.1\BussinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\obj\Debug\netcoreapp3.1\BussinessLayer.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\obj\Debug\netcoreapp3.1\BussinessLayer.AssemblyInfo.cs
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\obj\Debug\netcoreapp3.1\BussinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\obj\Debug\netcoreapp3.1\BussinessLayer.csproj.CopyComplete
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\obj\Debug\netcoreapp3.1\BussinessLayer.dll
+C:\Users\HP\Desktop\d\FundoooApp\BussinessLayer\obj\Debug\netcoreapp3.1\BussinessLayer.pdb
