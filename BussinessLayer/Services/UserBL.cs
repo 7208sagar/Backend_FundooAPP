@@ -15,6 +15,22 @@ namespace BussinessLayer.Services
         {
             this.userRL = userRL;
         }
+
+       
+
+        public bool Login(UserLogin user1)
+        {
+            try
+            {
+                return this.userRL.GetLogin(user1);
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         public bool Registration(UserRegistration user)
         {
             try
@@ -25,7 +41,8 @@ namespace BussinessLayer.Services
             {
                 throw;
             }
-        
+            
+
         }
     }
 }

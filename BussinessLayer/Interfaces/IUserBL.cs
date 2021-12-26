@@ -9,5 +9,8 @@ namespace BussinessLayer.Interfaces
     public interface IUserBL
     {
         bool Registration(UserRegistration user);
+
+        
+        bool Login(UserLogin user1);
     }
 }

@@ -2,7 +2,7 @@
 using CommonLayer.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using System;  
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,8 +36,27 @@ namespace FundoooApp.Controllers
             {
                 return this.BadRequest(new { Success = false, message = e.Message });
             }
-            
+
         }
-       
+
+        [HttpPost("Login")]
+        public IActionResult UserLogin(UserLogin user1)
+        {
+            try
+            {
+                if (this.userBL.Login(user1))
+                {
+                    return this.Ok(new { Success = true, message = "Registration Successful" });
+                }
+                    else
+                {
+                    return this.BadRequest(new { Success = false, message = "Registration unsuccessful" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Success = false, message = e.Message });
+            }
+        }
     }
 }
