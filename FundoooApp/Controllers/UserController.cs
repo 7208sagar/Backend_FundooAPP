@@ -1,5 +1,6 @@
 ﻿using BussinessLayer.Interfaces;
 using CommonLayer.Model;
+using CommonLayer.ResponseModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;  
@@ -36,7 +37,24 @@ namespace FundoooApp.Controllers
             {
                 return this.BadRequest(new { Success = false, message = e.Message });
             }
-
+        }
+        [HttpGet("UserInfo")]
+        public IActionResult GetAlldata()
+        {
+            try
+            {
+                var userInfo = this.userBL.GetAlldata();
+                if (userInfo != null)
+                {
+                    return this.Ok(new { Success = true, message = "User records found", userdata = userInfo });
+                   
+                }
+                return this.BadRequest(new { Success = false, message = " User records not found" });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Success = false, message = e.Message });
+            }
         }
 
         [HttpPost("Login")]
@@ -44,14 +62,12 @@ namespace FundoooApp.Controllers
         {
             try
             {
-                if (this.userBL.Login(user1))
+                LoginResponse result = this.userBL.UserLogin(user1);
+                if (result.EmailId != null)
                 {
-                    return this.Ok(new { Success = true, message = "Registration Successful" });
+                    return this.Ok(new { Success = true, message = "Login Successful", data = result }) ;
                 }
-                    else
-                {
-                    return this.BadRequest(new { Success = false, message = "Registration unsuccessful" });
-                }
+                   return this.BadRequest(new { Success = false, message = "Login unsuccessful" });              
             }
             catch (Exception e)
             {

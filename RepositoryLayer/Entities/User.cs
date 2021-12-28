@@ -41,10 +41,6 @@ namespace RepositoryLayer
 
         [DataType(DataType.DateTime)]
         public DateTime? Modifiedat { get; set; }
-
-
-
-
     }
 
 }

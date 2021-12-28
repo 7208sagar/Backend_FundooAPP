@@ -36,6 +36,7 @@ namespace FundoooApp
             services.AddTransient<IUserRL, UserRL>();
             services.AddDbContext<Context>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:FundooDB"]));
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +45,7 @@ namespace FundoooApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+               
             }
 
             app.UseHttpsRedirection();
@@ -56,6 +58,9 @@ namespace FundoooApp
             {
                 endpoints.MapControllers();
             });
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FundoooNotesApp v1"));
+
         }
     }
 }

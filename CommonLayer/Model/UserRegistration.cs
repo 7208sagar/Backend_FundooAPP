@@ -20,7 +20,6 @@ namespace CommonLayer.Model
         [Required(ErrorMessage = "EmailId is required")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "EmaiId:")]
-
         public string EmailId { get; set; }
 
         [Required(ErrorMessage = "Password is required")]

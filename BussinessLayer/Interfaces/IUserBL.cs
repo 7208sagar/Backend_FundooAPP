@@ -1,5 +1,6 @@
 ﻿using CommonLayer.Model;
 using CommonLayer.ResponseModel;
+using RepositoryLayer;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,8 +10,7 @@ namespace BussinessLayer.Interfaces
     public interface IUserBL
     {
         bool Registration(UserRegistration user);
-
-        
-        bool Login(UserLogin user1);
+        LoginResponse UserLogin(UserLogin user1);
+        IEnumerable<User> GetAlldata();
     }
 }
