@@ -53,3 +53,7 @@ C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Microsoft.Id
 C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
 C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

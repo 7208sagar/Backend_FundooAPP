@@ -11,17 +11,14 @@ namespace CommonLayer.Model
         [DataType(DataType.Text)]
         [Display(Name = "First Name:")]
         public string FirstName { get; set; }
-
         [Required(ErrorMessage = "Last name is required")]
         [DataType(DataType.Text)]
         [Display(Name = "Last Name:")]
         public string LastName { get; set; }
-
         [Required(ErrorMessage = "EmailId is required")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "EmaiId:")]
         public string EmailId { get; set; }
-
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         [Display(Name = "Password:")]

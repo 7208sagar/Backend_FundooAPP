@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CommonLayer.Model;
+using Microsoft.EntityFrameworkCore;
+using RepositoryLayer.Entities;
+using System.Collections.Generic;
 
 namespace RepositoryLayer
 {
@@ -9,5 +12,6 @@ namespace RepositoryLayer
 
         }
         public DbSet<User> Users {get;set;}
+        public DbSet<Notess> NotessssTables{ get; set; }
     }
 }

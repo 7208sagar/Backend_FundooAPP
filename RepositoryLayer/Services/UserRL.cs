@@ -19,17 +19,17 @@ namespace RepositoryLayer.Services
         {
             this.context = context;
         }
-
-        public LoginResponse UserLogin(UserLogin UserLogin)
+        public LoginResponse UserLogin(UserLogin user1)
         {
             try
             {
-                var existingLogin = this.context.Users.Where(x => x.EmailId == UserLogin.EmailId && x.Password == UserLogin.Password).FirstOrDefault();
-
-                if (existingLogin.Id != 0 && existingLogin.EmailId != null)
+                // var existingLogin = this.context.Users.Where(x => x.EmailId == user1.EmailId && x.Password == user1.Password).FirstOrDefault();
+                User existingLogin = this.context.Users.Where(X => X.EmailId == user1.EmailId).FirstOrDefault();
+                if (Decryptpass(existingLogin.Password) == user1.Password)
+                //if (existingLogin.Id != 0 && existingLogin.EmailId != null)
                 {
                     LoginResponse login = new LoginResponse();
-                    string token = "";
+                    string token;
                     token = GenerateJWTToken(existingLogin.EmailId);
                     login.Id = existingLogin.Id;
                     login.FirstName = existingLogin.FirstName;
@@ -39,11 +39,10 @@ namespace RepositoryLayer.Services
                     login.Modifiedat = existingLogin.Modifiedat;
                     login.token = token;
                     return login;
-                   
                 }
                 else
                 {
-                    return null ;
+                    return null;
                 }
             }
             catch (Exception e)
@@ -53,18 +52,16 @@ namespace RepositoryLayer.Services
         }
         private string GenerateJWTToken(string EmailId)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("FundooApp"));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("11111111111111111133333333366634364143827489054whdsf7re564rfgdsgvldfhkjv"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[] {
                 new Claim("EmailId",EmailId)
             };
-
             var token = new JwtSecurityToken("Sagar", EmailId, claims,
              expires: DateTime.Now.AddMinutes(15),
              signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
         public bool Registration(UserRegistration user)
         {
             try
@@ -73,14 +70,11 @@ namespace RepositoryLayer.Services
                 newUser.FirstName = user.FirstName;
                 newUser.LastName = user.LastName;
                 newUser.EmailId = user.EmailId;
-                newUser.Password = user.Password;
+                newUser.Password =encryptpass(user.Password);
                 newUser.Createat = DateTime.Now;
-                
-                
                 this.context.Users.Add(newUser);
-               
-                int result= this.context.SaveChanges();
-                if (result>0)
+                int result = this.context.SaveChanges();
+                if (result > 0)
                 {
                     return true;
                 }
@@ -89,16 +83,34 @@ namespace RepositoryLayer.Services
                     return false;
                 }
             }
-
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw;
             }
         }
-
         public IEnumerable<User> GetAlldata()
         {
             return context.Users.ToList();
+        }
+        public string encryptpass(string password)
+        {
+            string msg = "";
+            byte[] encode = new byte[password.Length];
+            encode = Encoding.UTF8.GetBytes(password);
+            msg = Convert.ToBase64String(encode);
+            return msg;
+        }
+        private string Decryptpass(string encryptpwd)
+        {
+            string decryptpwd = string.Empty;
+            UTF8Encoding encodepwd = new UTF8Encoding();
+            Decoder Decode = encodepwd.GetDecoder();
+            byte[] todecode_byte = Convert.FromBase64String(encryptpwd);
+            int charCount = Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+            char[] decoded_char = new char[charCount];
+            Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+            decryptpwd = new String(decoded_char);
+            return decryptpwd;
         }
     }
 }

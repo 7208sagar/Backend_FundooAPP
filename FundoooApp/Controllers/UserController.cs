@@ -1,6 +1,7 @@
 ﻿using BussinessLayer.Interfaces;
 using CommonLayer.Model;
 using CommonLayer.ResponseModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;  
@@ -38,7 +39,7 @@ namespace FundoooApp.Controllers
                 return this.BadRequest(new { Success = false, message = e.Message });
             }
         }
-        [HttpGet("UserInfo")]
+        [HttpGet("UserInfo")] 
         public IActionResult GetAlldata()
         {
             try
@@ -56,7 +57,6 @@ namespace FundoooApp.Controllers
                 return this.BadRequest(new { Success = false, message = e.Message });
             }
         }
-
         [HttpPost("Login")]
         public IActionResult UserLogin(UserLogin user1)
         {
