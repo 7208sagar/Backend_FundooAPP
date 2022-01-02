@@ -1,6 +1,7 @@
 ﻿using BussinessLayer.Interfaces;
 using CommonLayer.Model;
 using CommonLayer.ResponseModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RepositoryLayer.Entities;
@@ -13,6 +14,7 @@ namespace FundoooApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NotesController : ControllerBase
     {
         private readonly INotesBL notesBL;

@@ -1,5 +1,6 @@
 ﻿using CommonLayer.Model;
 using CommonLayer.ResponseModel;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RepositoryLayer.Interfaces;
 using System;
@@ -15,9 +16,11 @@ namespace RepositoryLayer.Services
     {
         private const string Secret = "FundooApp";
         Context context;
-        public UserRL(Context context)
+        IConfiguration _config;
+        public UserRL(Context context, IConfiguration config)
         {
             this.context = context;
+            _config = config;
         }
         public LoginResponse UserLogin(UserLogin user1)
         {
@@ -52,15 +55,22 @@ namespace RepositoryLayer.Services
         }
         private string GenerateJWTToken(string EmailId)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("11111111111111111133333333366634364143827489054whdsf7re564rfgdsgvldfhkjv"));
+            //var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("11111111111111111133333333366634364143827489054whdsf7re564rfgdsgvldfhkjv"));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[] {
                 new Claim("EmailId",EmailId)
             };
-            var token = new JwtSecurityToken("Sagar", EmailId, claims,
-             expires: DateTime.Now.AddMinutes(15),
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+             _config["Jwt:Issuer"],
+             claims,
+             expires: DateTime.Now.AddMinutes(120),
              signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(token);
+            //var token = new JwtSecurityToken("Sagar", EmailId, claims,
+            // expires: DateTime.Now.AddMinutes(15),
+            // signingCredentials: credentials);
+            //return new JwtSecurityTokenHandler().WriteToken(token);
         }
         public bool Registration(UserRegistration user)
         {
