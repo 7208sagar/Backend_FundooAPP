@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rP3gvxC+eWPHSQcUUSz4Ifsh5mAg/BywwXpxQYB2+t/G9UOXG1XJsRyu80NZICIpbd+GA5pvhrRin50Jj6ocpw==",
+  "dgSpecHash": "+J8Sl1OlCUB2/DOZrSgMa3U2M5HYW9LqvoFncnJD369HPDPe4xwe+v6oL1TUyld5p8gTjO0DkcDH7d3HZLbYyA==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\Desktop\\d\\FundoooApp\\CommonLayer\\CommonLayer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\experimental.system.messaging\\1.1.0\\experimental.system.messaging.1.1.0.nupkg.sha512"
+  ],
   "logs": []
 }

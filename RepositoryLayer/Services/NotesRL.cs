@@ -60,32 +60,77 @@ namespace RepositoryLayer.Services
             }
         
         }
-        public object UpdateNotes(long noteId, Notess notes)
+        public bool RemoveNote(long noteId)
         {
-                try
-                {
-                    var note = this.context.NotessssTables.FirstOrDefault(x => x.Id == noteId);
-                    if (note != null)
+            try
+            {
+                if (noteId > 0)
+                { 
+                    var notes = this.context.NotessssTables.Where(x => x.NotesId == noteId).SingleOrDefault();
+                    if (notes != null)
                     {
-                        note.Title = notes.Title;
-                        note.Message = notes.Message;
-                        note.Remainder = notes.Remainder;
-                        note.Image = notes.Image;
-                        note.IsArchive = notes.IsArchive;
-                        note.IsPin = notes.IsPin;
-                        note.IsTrash = notes.IsTrash;
-                        note.Createdat = (DateTime)notes.Createdat;
-                        this.context.SaveChanges();
+                        if (notes.IsTrash == true)
+                        {
+                            this.context.NotessssTables.Remove(notes);
+                            this.context.SaveChangesAsync();
+                            return true;
+                        }
                     }
-                    return note;
                 }
-                catch (Exception e)
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }      
+        public string PinOrUnpin(long noteId)
+        {
+            try
+            {
+                var notes = this.context.NotessssTables.Where(x => x.NotesId == noteId).SingleOrDefault();
+                if (notes.IsPin == false)
                 {
-                    throw;
+                    notes.IsPin = true;
+                    context.Entry(notes).State = EntityState.Modified;
+                    context.SaveChanges();
+                    string message = "Note is getting pin";
+                    return message;
                 }
+                if (notes.IsPin == true)
+                {
+                    notes.IsPin = false;
+                    context.Entry(notes).State = EntityState.Modified;
+                    context.SaveChanges();
+                    string message = "Note Unpinned";
+                    return message;
+                }
+                return "Unable to Pin or Unpin notes";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public string UpdateNotes(Notess notes)
+        {
+            try
+            {
+                if (notes.NotesId != 0)
+                {
+                    this.context.Entry(notes).State = EntityState.Modified;
+                    this.context.SaveChanges();
+                    return "UPDATE SUCCESSFULL";
+                }
+                return "Updation Failed";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
+}
     
 
 

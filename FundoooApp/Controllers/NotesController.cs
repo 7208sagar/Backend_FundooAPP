@@ -4,6 +4,7 @@ using CommonLayer.ResponseModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -58,17 +59,63 @@ namespace FundoooApp.Controllers
                 throw;
             }
         }
-        [HttpPut("Update")]
-        public IActionResult UpdateNote(long Id, [FromBody] Notess note)
+       
+        [HttpDelete]
+        [Route("{noteId}")]
+        public IActionResult DeleteNotes(long noteId)
         {
             try
             {
-                var update = this.notesBL.UpdateNotes(Id, note);
-                return Ok(new { Success = true, message = "Notes Updated Successful", update });
+                var result = this.notesBL.RemoveNote(noteId);
+                if (result.Equals(true))
+                {
+                    //return this.Ok(new NotesResponseModel<int>() { Status = true, Message = "Delete Note Successfully", Data = noteId });
+                    return this.Ok(new { Success = true, message = "New note created successfully " });
+                }
+
+                return this.BadRequest(new { Status = false, Message = "Unable to delete note : Enter valid Id" });
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return this.BadRequest(new { Success = false, message = e.Message });
+                return this.NotFound(new { Status = false, Message = ex.Message });
+            }
+        }
+        [HttpPut]
+        [Route("updateNotes")]
+        public IActionResult UpdateNotes([FromBody] Notess notes)
+        {
+            try
+            {
+                var result = this.notesBL.UpdateNotes(notes);
+                if (result.Equals("UPDATE SUCCESSFULL"))
+                {
+                    return this.Ok(new { Success = true, message = "Note Updated successfully " });
+                }
+
+                return this.BadRequest(new { Status = false, Message = "Error while updating notes" });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message });
+            }
+        }
+        [HttpPut]
+        [Route("pinOrUnpin")]
+        public IActionResult PinOrUnpinNote(long noteId)
+        {
+            try
+            {
+                var result = this.notesBL.PinOrUnpin(noteId);
+                if (result != null)
+                {
+                    return this.Ok(new { Success = true, message = "pinned successfully " });
+                }
+
+                return this.BadRequest(new { Status = false, Message = result });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message });
             }
         }
     }

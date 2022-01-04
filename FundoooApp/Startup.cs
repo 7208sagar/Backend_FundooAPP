@@ -38,10 +38,10 @@ namespace FundoooApp
             services.AddTransient<IUserRL, UserRL>();
             services.AddTransient<INotesBL, NotesBL>();
             services.AddTransient<INotesRL, NotesRL>();
-            services.AddControllersWithViews()
-             .AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+            //services.AddControllersWithViews()
+            //.AddNewtonsoftJson(options =>
+            //options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            //);
             services.AddDbContext<Context>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:FundooDB"]));
             services.AddControllers();
             // Enable Swagger
@@ -100,7 +100,6 @@ namespace FundoooApp
                 };
             });
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

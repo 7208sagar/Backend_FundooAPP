@@ -10,6 +10,9 @@ namespace BussinessLayer.Interfaces
     {
         public bool CreateNote(NotesModel notes);
         IEnumerable<Notess> GetAllNotes();
-        object UpdateNotes(long id, Notess note);
+      
+        public bool RemoveNote(long noteId);
+        public string PinOrUnpin(long noteId);
+        public string UpdateNotes(Notess notes);
     }
 }

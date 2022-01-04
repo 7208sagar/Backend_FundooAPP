@@ -11,5 +11,7 @@ namespace RepositoryLayer.Interfaces
         bool Registration(UserRegistration user);
         LoginResponse UserLogin(UserLogin user1);
         IEnumerable<User> GetAlldata();
+        bool SendResetLink(string email);
+        //bool SendEmail(string emailAddress);
     }
 }

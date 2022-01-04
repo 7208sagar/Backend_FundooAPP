@@ -40,16 +40,44 @@ namespace BussinessLayer.Services
                 throw;
             }
         }
-        public object UpdateNotes(long id, Notess note)
+
+        public string PinOrUnpin(long noteId)
         {
             try
             {
-                return this.notesRL.UpdateNotes(id, note);
+                return this.notesRL.PinOrUnpin(noteId);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
         }
+
+        public bool RemoveNote(long noteId)
+        {
+            try
+            {
+                bool result = this.notesRL.RemoveNote(noteId);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public string UpdateNotes(Notess notes)
+        {
+            try
+            {
+                string result = this.notesRL.UpdateNotes(notes);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
-}
+    }
+

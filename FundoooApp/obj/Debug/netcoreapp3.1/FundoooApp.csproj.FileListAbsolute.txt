@@ -60,3 +60,4 @@ C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Newtonsoft.J
 C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
 C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\HP\Desktop\d\FundoooApp\FundoooApp\bin\Debug\netcoreapp3.1\Experimental.System.Messaging.dll

@@ -42,6 +42,24 @@ namespace BussinessLayer.Services
         {
             return this.userRL.GetAlldata();
         }
+
+        public bool SendResetLink(string email)
+        {
+            return this.userRL.SendResetLink(email);
+        }
+
+        //public bool SendEmail(string emailAddress)
+        //{
+        //    try
+        //    {
+        //        bool result = this.userRL.SendEmail(emailAddress);
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
     }
 }
 

@@ -80,7 +80,7 @@ namespace RepositoryLayer.Services
                 newUser.FirstName = user.FirstName;
                 newUser.LastName = user.LastName;
                 newUser.EmailId = user.EmailId;
-                newUser.Password =encryptpass(user.Password);
+                newUser.Password = encryptpass(user.Password);
                 newUser.Createat = DateTime.Now;
                 this.context.Users.Add(newUser);
                 int result = this.context.SaveChanges();
@@ -122,5 +122,20 @@ namespace RepositoryLayer.Services
             decryptpwd = new String(decoded_char);
             return decryptpwd;
         }
+        public bool SendResetLink(string email)
+        {
+            User existingLogin = this.context.Users.Where(X => X.EmailId == email).FirstOrDefault();
+            if (existingLogin.EmailId != null)
+            {
+                var token = GenerateJWTToken(existingLogin.EmailId);
+                new MsmqOperation().Sender(token);
+                return true;
+            }
+            return false;
+        }
     }
 }
+    
+    
+           
+

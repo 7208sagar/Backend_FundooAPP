@@ -74,5 +74,29 @@ namespace FundoooApp.Controllers
                 return this.BadRequest(new { Success = false, message = e.Message });
             }
         }
+        [HttpPost]
+        [Route("forgetPassword")]
+        public IActionResult ForgetPassword(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return BadRequest("Email should not be null or empty");
+            }
+            try
+            {
+                if (this.userBL.SendResetLink(email))
+                {
+                    return Ok(new { Success = true, message = "Reset password link send successfully" });
+                }
+                else
+                {
+                    return Ok(new { Success = true, message = "Error in Reset password link send" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { success = false, message = e.Message });
+            }
+        }
     }
 }

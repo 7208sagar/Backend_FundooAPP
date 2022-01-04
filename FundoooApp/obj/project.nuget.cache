@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "GqH4qUFhjWXeKiaYR2b9UFeBnw0oRz7hQ1MbFuKJWqVRQbbuekRDcUmvpzqji7zpua7/vEpl0EzvLQC2UuN+1g==",
+  "dgSpecHash": "uEcUn9N3fJbBzgQM+29C6FYPLSZi+wLfqRZ2y67ptqq5XI3nKqFNQ9UEzdfAiqt5jkmYhXXGCrdcK5vpCIILRw==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\Desktop\\d\\FundoooApp\\FundoooApp\\FundoooApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\experimental.system.messaging\\1.1.0\\experimental.system.messaging.1.1.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.0\\microsoft.aspnetcore.authentication.jwtbearer.3.1.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.0\\microsoft.aspnetcore.jsonpatch.3.1.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.0\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.0.nupkg.sha512",
