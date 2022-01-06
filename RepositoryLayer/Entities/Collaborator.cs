@@ -12,8 +12,7 @@ namespace RepositoryLayer.Entities
         public int CollaboratorId { get; set; }
 
         [ForeignKey("NoteId")]
-        public int NotesId { get; set; }
-       
+        public int NotesId { get; set; }     
         public Notess Notess { get; set; }
         public string Collab_EmailId { get; set; }
     }
