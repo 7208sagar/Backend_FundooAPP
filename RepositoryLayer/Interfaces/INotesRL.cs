@@ -10,9 +10,11 @@ namespace RepositoryLayer.Interfaces
     {
         public bool CreateNote(NotesModel notes);
         IEnumerable<Notess> GetAllNotes();
-      
         bool RemoveNote(long noteId);
         public string PinOrUnpin(long noteId);
         string UpdateNotes(Notess notes);
+        string ArchieveOrUnarchieve(long noteId);
+        bool AddColour(long noteId, string color);
+        string IsTrash(int noteId);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CommonLayer.Model;
 using CommonLayer.ResponseModel;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RepositoryLayer.Interfaces;
@@ -132,6 +133,35 @@ namespace RepositoryLayer.Services
                 return true;
             }
             return false;
+        }
+        public bool ResetPassword(ResetPassword resetPassword)
+        {
+            try
+            {
+                var Entries = this.context.Users.FirstOrDefault(x => x.EmailId == resetPassword.EmailId);
+                if (Entries != null)
+                {
+                    if (resetPassword.Password == resetPassword.ConfirmPassword)
+                    {
+                        Entries.Password = encryptpass(resetPassword.Password);
+                        this.context.Entry(Entries).State = EntityState.Modified;
+                        this.context.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

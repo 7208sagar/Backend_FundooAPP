@@ -69,11 +69,10 @@ namespace FundoooApp.Controllers
                 var result = this.notesBL.RemoveNote(noteId);
                 if (result.Equals(true))
                 {
-                    //return this.Ok(new NotesResponseModel<int>() { Status = true, Message = "Delete Note Successfully", Data = noteId });
-                    return this.Ok(new { Success = true, message = "New note created successfully " });
+                    return this.Ok(new { Success = true, message = "Delete Note Successfully" });
                 }
 
-                return this.BadRequest(new { Status = false, Message = "Unable to delete note : Enter valid Id" });
+                return this.BadRequest(new { Status = false, Message = "Unable to delete note Enter valid Id" });
             }
             catch (Exception ex)
             {
@@ -109,6 +108,64 @@ namespace FundoooApp.Controllers
                 if (result != null)
                 {
                     return this.Ok(new { Success = true, message = "pinned successfully " });
+                }
+
+                return this.BadRequest(new { Status = false, Message = result });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message });
+            }
+        }
+        [HttpPut]
+        [Route("archieveOrUnarchieve")]
+        public IActionResult ArchieveOrUnarchieve(long noteId)
+        {
+            try
+            {
+                var result = this.notesBL.ArchieveOrUnArchieve(noteId);
+                if (result != null)
+                {
+                    return this.Ok(new { Success = true, message = "Archieved successfully " });
+
+                }
+
+                return this.BadRequest(new { Status = false, Message = result });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message });
+            }
+        }
+        [HttpPut]
+        [Route("addColor")]
+        public IActionResult AddColor(long noteId, string color)
+        {
+            try
+            {
+                var result = this.notesBL.AddColor(noteId, color);
+                if (result.Equals(true))
+                {
+                    return this.Ok(new { Status = true, Message = "Add Colour Sucessfully", Data = color });
+                }
+
+                return this.BadRequest(new { Status = false, Message = result });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message });
+            }
+        }
+        [HttpPut]
+        [Route("trashOrUntrash")]
+        public IActionResult TrashOrUntrash(int noteId)
+        {
+            try
+            {
+                var result = this.notesBL.IsTrash(noteId);
+                if (result != null)
+                {
+                    return this.Ok(new { Status = true, Message = result, Data = result });
                 }
 
                 return this.BadRequest(new { Status = false, Message = result });

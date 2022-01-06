@@ -65,7 +65,7 @@ namespace FundoooApp.Controllers
                 LoginResponse result = this.userBL.UserLogin(user1);
                 if (result.EmailId != null)
                 {
-                    return this.Ok(new { Success = true, message = "Login Successful", data = result }) ;
+                    return this.Ok(new { Success = true, message = "Login Successful", data = result });
                 }
                    return this.BadRequest(new { Success = false, message = "Login unsuccessful" });              
             }
@@ -96,6 +96,25 @@ namespace FundoooApp.Controllers
             catch (Exception e)
             {
                 return this.BadRequest(new { success = false, message = e.Message });
+            }
+        }
+        [Authorize]
+        [HttpPut]
+        [Route("resetPassword")]
+        public IActionResult ResetPassword([FromBody] ResetPassword resetPassword)
+        {
+            try
+            {
+                var result = this.userBL.ResetPassword(resetPassword);
+                if (result.Equals(true))
+                {
+                    return this.Ok(new { Status = true, Message = "Reset Password  Sucessfully", Data = resetPassword });
+                }
+                return this.BadRequest(new { Status = false, Message = "Failed to reset password:Email not exist in database or password is not matched" });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message });
             }
         }
     }

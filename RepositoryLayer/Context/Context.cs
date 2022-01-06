@@ -13,5 +13,6 @@ namespace RepositoryLayer
         }
         public DbSet<User> Users {get;set;}
         public DbSet<Notess> NotessssTables{ get; set; }
+        public DbSet<Collaborator> CollaboratorTable { get; set; }
     }
 }

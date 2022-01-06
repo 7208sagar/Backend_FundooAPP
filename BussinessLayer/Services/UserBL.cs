@@ -15,7 +15,7 @@ namespace BussinessLayer.Services
         public UserBL(IUserRL userRL)
         {
             this.userRL = userRL;
-        }    
+        }
         public LoginResponse UserLogin(UserLogin user1)
         {
             try
@@ -42,24 +42,22 @@ namespace BussinessLayer.Services
         {
             return this.userRL.GetAlldata();
         }
-
         public bool SendResetLink(string email)
         {
             return this.userRL.SendResetLink(email);
         }
-
-        //public bool SendEmail(string emailAddress)
-        //{
-        //    try
-        //    {
-        //        bool result = this.userRL.SendEmail(emailAddress);
-        //        return result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+        public bool ResetPassword(ResetPassword resetPassword)
+        {
+            try
+            {
+                bool result = this.userRL.ResetPassword(resetPassword);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
 

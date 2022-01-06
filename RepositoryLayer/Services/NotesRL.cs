@@ -58,23 +58,19 @@ namespace RepositoryLayer.Services
             {
                 throw;
             }
-        
         }
         public bool RemoveNote(long noteId)
         {
             try
             {
                 if (noteId > 0)
-                { 
+                {
                     var notes = this.context.NotessssTables.Where(x => x.NotesId == noteId).SingleOrDefault();
                     if (notes != null)
                     {
-                        if (notes.IsTrash == true)
-                        {
                             this.context.NotessssTables.Remove(notes);
                             this.context.SaveChangesAsync();
-                            return true;
-                        }
+                            return true;                       
                     }
                 }
                 return false;
@@ -83,7 +79,7 @@ namespace RepositoryLayer.Services
             {
                 throw new Exception(ex.Message);
             }
-        }      
+        }
         public string PinOrUnpin(long noteId)
         {
             try
@@ -123,6 +119,82 @@ namespace RepositoryLayer.Services
                     return "UPDATE SUCCESSFULL";
                 }
                 return "Updation Failed";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public string ArchieveOrUnarchieve(long noteId)
+        {
+            try
+            {
+                var notes = this.context.NotessssTables.Where(x => x.NotesId == noteId).SingleOrDefault();
+                if (notes.IsArchive == false)
+                {
+                    notes.IsArchive = true;
+                    context.Entry(notes).State = EntityState.Modified;
+                    context.SaveChanges();
+                    string message = "Note is Archieve";
+                    return message;
+                }
+                if (notes.IsArchive == true)
+                {
+                    notes.IsArchive = false;
+                    context.Entry(notes).State = EntityState.Modified;
+                    context.SaveChanges();
+                    string message = "Note UnArchieve";
+                    return message;
+                }
+                return "Unable to Archieve or UnArchieve notes";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool AddColour(long noteId, string color)
+        {
+            try
+            {
+                var notes = this.context.NotessssTables.Where(x => x.NotesId == noteId).SingleOrDefault();
+                if (notes != null)
+                {
+                    notes.Colour = color;
+                    context.Entry(notes).State = EntityState.Modified;
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public string IsTrash(int noteId)
+        {
+            try
+            {
+                var notes = this.context.NotessssTables.Where(x => x.NotesId == noteId).SingleOrDefault();
+                if (notes.IsTrash == false)
+                {
+                    notes.IsTrash = true;
+                    context.Entry(notes).State = EntityState.Modified;
+                    context.SaveChanges();
+                    string message = "Notes Is Trashed";
+                    return message;
+                }
+                if (notes.IsTrash == true)
+                {
+                    notes.IsTrash = false;
+                    context.Entry(notes).State = EntityState.Modified;
+                    context.SaveChanges();
+                    string message = "Note Restored";
+                    return message;
+                }
+
+                return "Unable to Trash or Restored notes"; ;
             }
             catch (Exception ex)
             {

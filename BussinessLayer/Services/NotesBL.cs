@@ -8,14 +8,37 @@ using System.Text;
 
 namespace BussinessLayer.Services
 {
-   public class NotesBL : INotesBL
+    public class NotesBL : INotesBL
     {
         INotesRL notesRL;
         public NotesBL(INotesRL notesRL)
 
         {
             this.notesRL = notesRL;
-
+        }
+        public bool AddColor(long noteId, string color)
+        {
+            try
+            {
+                bool result = this.notesRL.AddColour(noteId, color);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public string ArchieveOrUnArchieve(long noteId)
+        {
+            try
+            {
+                string result = this.notesRL.ArchieveOrUnarchieve(noteId);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
         public bool CreateNote(NotesModel notes)
         {
@@ -28,7 +51,6 @@ namespace BussinessLayer.Services
                 throw;
             }
         }
-
         public IEnumerable<Notess> GetAllNotes()
         {
             try
@@ -38,6 +60,18 @@ namespace BussinessLayer.Services
             catch (Exception)
             {
                 throw;
+            }
+        }
+        public string IsTrash(int noteId)
+        {
+            try
+            {
+                string result = this.notesRL.IsTrash(noteId);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -52,7 +86,6 @@ namespace BussinessLayer.Services
                 throw;
             }
         }
-
         public bool RemoveNote(long noteId)
         {
             try
@@ -65,19 +98,18 @@ namespace BussinessLayer.Services
                 throw new Exception(ex.Message);
             }
         }
-
-        public string UpdateNotes(Notess notes)
-        {
-            try
+            public string UpdateNotes(Notess notes)
             {
-                string result = this.notesRL.UpdateNotes(notes);
-                return result;
+                try
+                {
+                    string result = this.notesRL.UpdateNotes(notes);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-    }
-    }
+    } 
+}
 
