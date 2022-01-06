@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BussinessLayer.Interfaces
 {
-    interface ICollaborator
+   public interface ICollaboratorBL
     {
     }
 }

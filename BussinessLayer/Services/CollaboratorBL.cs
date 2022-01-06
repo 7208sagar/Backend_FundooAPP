@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BussinessLayer.Services
 {
-    class Collaborator
+   public class CollaboratorBL
     {
     }
 }
