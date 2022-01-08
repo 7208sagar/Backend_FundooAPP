@@ -9,11 +9,17 @@ namespace RepositoryLayer.Entities
    public class Collaborator
     {
         [Key]
-        public int CollaboratorId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long CollaboratorId { get; set; }
 
-        [ForeignKey("NoteId")]
-        public int NotesId { get; set; }     
-        public Notess Notess { get; set; }
-        public string Collab_EmailId { get; set; }
+        [ForeignKey("NotessssTables")]
+        public long NotesId { get; set; }
+        public Notess Notes { get; set; }
+
+        [Required]
+        public string SenderEmail { get; set; }
+
+        [Required]
+        public string ReceiverEmail { get; set; }
     }
 }

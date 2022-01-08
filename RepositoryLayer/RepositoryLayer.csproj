@@ -7,6 +7,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20211229174536_firstH.cs" />
     <Compile Remove="Migrations\20211229174536_firstH.Designer.cs" />
+    <Compile Remove="Migrations\20220107025953_newCB.cs" />
+    <Compile Remove="Migrations\20220107025953_newCB.Designer.cs" />
+    <Compile Remove="Migrations\20220107031730_CB1.cs" />
+    <Compile Remove="Migrations\20220107031730_CB1.Designer.cs" />
+    <Compile Remove="Migrations\20220107032219_CB3.cs" />
+    <Compile Remove="Migrations\20220107032219_CB3.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

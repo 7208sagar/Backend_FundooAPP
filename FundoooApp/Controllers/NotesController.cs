@@ -175,6 +175,46 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message });
             }
         }
+        [HttpGet]
+        [Route("retrieveAllTrashNotes")]
+        public IActionResult RetrieveAllTrashNotes()
+        {
+            try
+            {
+                IEnumerable<NotesModel> result = this.notesBL.RetrieveTrashNotes();
+                if (result != null)
+                {
+                    return this.Ok(new { Status = true, Message = "Retrieve Notes Successfully", Data = result });
+                }
+
+                return this.BadRequest(new { Status = false, Message = "Failed to Retrieve Notes" });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message });
+            }
+        }
+        [HttpPut]
+        [Route("api/addreminder")]
+        public IActionResult AddReminder(long notesId, string reminder)
+        {
+            try
+            {
+                bool result = this.notesBL.AddReminder(notesId, reminder);
+                if (result.Equals("Remind added successfully"))
+                {
+                    return this.Ok(new { Status = true, Message = result });
+                }
+                else
+                {
+                    return this.BadRequest(new { Status = false, Message = result });
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message });
+            }
+        }
     }
 }
 

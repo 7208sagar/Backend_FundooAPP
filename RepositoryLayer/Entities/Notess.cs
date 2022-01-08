@@ -9,8 +9,8 @@ namespace RepositoryLayer.Entities
    public class Notess
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
-        public long NotesId{ get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long NotesId { get; set; }
         public User User { get; set; }
 
         [ForeignKey("Users")]
@@ -20,7 +20,7 @@ namespace RepositoryLayer.Entities
         [Required]
         public string Message { get; set; }
         [Required]
-        public DateTime Remainder { get; set; }
+        public string Remainder { get; set; }
         [Required]
         public string Colour { get; set; }
         [Required]
@@ -33,5 +33,6 @@ namespace RepositoryLayer.Entities
         public bool IsTrash { get; set; }
         public DateTime? Createdat { get; set; }
         public DateTime? Modifiedat { get; set; }
+        public ICollection<Collaborator> Collaborator { get; set; }
     }
 }

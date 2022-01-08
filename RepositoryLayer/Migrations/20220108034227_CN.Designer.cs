@@ -10,8 +10,8 @@ using RepositoryLayer;
 namespace RepositoryLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220106121421_Collaborator")]
-    partial class Collaborator
+    [Migration("20220108034227_CN")]
+    partial class CN
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,25 +23,27 @@ namespace RepositoryLayer.Migrations
 
             modelBuilder.Entity("RepositoryLayer.Entities.Collaborator", b =>
                 {
-                    b.Property<int>("CollaboratorId")
+                    b.Property<long>("CollaboratorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Collab_EmailId")
+                    b.Property<long>("NotesId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ReceiverEmail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NotesId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("NotessNotesId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("SenderEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CollaboratorId");
 
-                    b.HasIndex("NotessNotesId");
+                    b.HasIndex("NotesId");
 
-                    b.ToTable("CollaboratorTable");
+                    b.ToTable("CollaboratorT");
                 });
 
             modelBuilder.Entity("RepositoryLayer.Entities.Notess", b =>
@@ -81,8 +83,9 @@ namespace RepositoryLayer.Migrations
                     b.Property<DateTime?>("Modifiedat")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Remainder")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Remainder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -135,9 +138,11 @@ namespace RepositoryLayer.Migrations
 
             modelBuilder.Entity("RepositoryLayer.Entities.Collaborator", b =>
                 {
-                    b.HasOne("RepositoryLayer.Entities.Notess", "Notess")
-                        .WithMany()
-                        .HasForeignKey("NotessNotesId");
+                    b.HasOne("RepositoryLayer.Entities.Notess", "Notes")
+                        .WithMany("Collaborator")
+                        .HasForeignKey("NotesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RepositoryLayer.Entities.Notess", b =>

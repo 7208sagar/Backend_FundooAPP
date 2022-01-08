@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BussinessLayer.Interfaces
+namespace RepositoryLayer.Interfaces
 {
-    public interface ICollaboratorBL
+    public interface ICollaboratorRL
     {
        public bool AddCollaborator(CollaboratorModel collaborators);
-        public bool RemoveCollaborator(long collaboratorId);
+       public bool RemoveCollaborator(long collaboratorId);
     }
 }

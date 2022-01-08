@@ -201,6 +201,46 @@ namespace RepositoryLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+        public IEnumerable<NotesModel> RetrieveTrashNotes()
+        {
+            try
+            {
+                IEnumerable<NotesModel> result;
+                IEnumerable<NotesModel> notes = (IEnumerable<NotesModel>)this.context.NotessssTables.Where(x => x.IsTrash == true).ToList();
+                if (notes != null)
+                {
+                    result = notes;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool AddReminder(long notesId, string reminder)
+        {
+            try
+            {
+                var notes = this.context.NotessssTables.Where(x => x.NotesId == notesId).FirstOrDefault();
+                if (notes != null)
+                {
+                    notes.Remainder = reminder;
+                    context.Entry(notes).State = EntityState.Modified;
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
     

@@ -28,6 +28,20 @@ namespace BussinessLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool AddReminder(long notesId, string reminder)
+        {
+            try
+            {
+                bool result = this.notesRL.AddReminder(notesId, reminder);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public string ArchieveOrUnArchieve(long noteId)
         {
             try
@@ -98,7 +112,21 @@ namespace BussinessLayer.Services
                 throw new Exception(ex.Message);
             }
         }
-            public string UpdateNotes(Notess notes)
+
+        public IEnumerable<NotesModel> RetrieveTrashNotes()
+        {
+            try
+            {
+                IEnumerable<NotesModel> result = this.notesRL.RetrieveTrashNotes();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public string UpdateNotes(Notess notes)
             {
                 try
                 {

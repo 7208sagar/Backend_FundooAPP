@@ -16,5 +16,7 @@ namespace RepositoryLayer.Interfaces
         string ArchieveOrUnarchieve(long noteId);
         bool AddColour(long noteId, string color);
         string IsTrash(int noteId);
+        IEnumerable<NotesModel> RetrieveTrashNotes();
+        bool AddReminder(long notesId, string reminder);
     }
 }

@@ -6,8 +6,8 @@ namespace CommonLayer.Model
 {
    public class CollaboratorModel
     {
-        public int CollaboratorId { get; set; }
-        public int NotesId { get; set; }
-        public string Collab_EmailId { get; set; }
+        public long NotesId { get; set; }
+        public string SenderEmail { get; set; }
+        public string ReceiverEmail { get; set; }
     }
 }
