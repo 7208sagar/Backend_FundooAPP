@@ -1,4 +1,5 @@
 ﻿using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using RepositoryLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace BussinessLayer.Interfaces
         public string IsTrash(int noteId);
         IEnumerable<NotesModel> RetrieveTrashNotes();
         bool AddReminder(long notesId, string reminder);
+        bool UploadImage(long noteId, IFormFile image);
     }
 }

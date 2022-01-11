@@ -2,6 +2,7 @@
 using CommonLayer.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RepositoryLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,23 @@ namespace FundoooApp.Controllers
             catch (Exception ex)
             {
                 return this.NotFound(new { Status = false, Message = ex.Message });
+            }
+        }
+        [HttpGet("CollaboratorAllData")]
+        public IActionResult GetAllData()
+        {
+            try
+            {
+                IEnumerable<Collaborator> collaborators = collaboratorBL.GetAllCollaborator();
+                if (collaborators == null)
+                {
+                    return BadRequest(new { Success = false, message = "No collaborator Found" });
+                }
+                return Ok(new { Success = true, message = "  Retrieve Collaborator Successfully" });
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

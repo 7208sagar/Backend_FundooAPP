@@ -19,13 +19,14 @@ namespace RepositoryLayer.Services
         {
             try
             {
-                var Collaborator = this.context.NotessssTables.Where(x => x.NotesId == collaborators.NotesId).SingleOrDefault();
-                if (Collaborator != null)
+                var Collaborator = this.context.NotessssTables.Where(x => x.Id == collaborators.Id && x.NotesId == collaborators.NotesId).SingleOrDefault();
+                var Collaborator1 = this.context.Users.Where(x => x.EmailId == collaborators.EmailId).SingleOrDefault();
+                if (Collaborator != null && Collaborator1!=null)
                 {
                     Collaborator newCollaborator = new Collaborator();
+                    newCollaborator.Id = collaborators.Id;
                     newCollaborator.NotesId = collaborators.NotesId;
-                    newCollaborator.SenderEmail = collaborators.SenderEmail;
-                    newCollaborator.ReceiverEmail = collaborators.ReceiverEmail;
+                    newCollaborator.EmailId = collaborators.EmailId;
                     this.context.CollaboratorT.Add(newCollaborator);
                 }
                 int result = this.context.SaveChanges();
@@ -59,6 +60,17 @@ namespace RepositoryLayer.Services
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+        public IEnumerable<Collaborator> GetAllCollaborator()
+        {
+            try
+            {
+                return this.context.CollaboratorT.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

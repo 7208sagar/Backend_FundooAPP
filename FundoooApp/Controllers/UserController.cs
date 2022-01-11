@@ -13,6 +13,7 @@ namespace FundoooApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    /// UserController class 
     public class UserController : ControllerBase
     {
         IUserBL userBL;
@@ -21,6 +22,7 @@ namespace FundoooApp.Controllers
             this.userBL = userBL;
         }
         [HttpPost]
+        [Route("registerUsers")]
         public IActionResult UserRegistration(UserRegistration user)
         {
             try
@@ -39,7 +41,12 @@ namespace FundoooApp.Controllers
                 return this.BadRequest(new { Success = false, message = e.Message });
             }
         }
-        [HttpGet("UserInfo")] 
+
+        /// <summary>
+        /// Get All Users Data
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("UserInfo")]
         public IActionResult GetAlldata()
         {
             try
@@ -48,7 +55,7 @@ namespace FundoooApp.Controllers
                 if (userInfo != null)
                 {
                     return this.Ok(new { Success = true, message = "User records found", userdata = userInfo });
-                   
+
                 }
                 return this.BadRequest(new { Success = false, message = " User records not found" });
             }
@@ -57,7 +64,14 @@ namespace FundoooApp.Controllers
                 return this.BadRequest(new { Success = false, message = e.Message });
             }
         }
-        [HttpPost("Login")]
+
+        /// <summary>
+        /// Login for the existing user
+        /// </summary>
+        /// <param name="user1"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UserLogin")]
         public IActionResult UserLogin(UserLogin user1)
         {
             try
@@ -74,6 +88,12 @@ namespace FundoooApp.Controllers
                 return this.BadRequest(new { Success = false, message = e.Message });
             }
         }
+
+        /// <summary>
+        /// Forgot the password.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("forgetPassword")]
         public IActionResult ForgetPassword(string email)
@@ -98,6 +118,12 @@ namespace FundoooApp.Controllers
                 return this.BadRequest(new { success = false, message = e.Message });
             }
         }
+
+        /// <summary>
+        /// Resets the Restpassword.
+        /// </summary>
+        /// <param name="resetPassword"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPut]
         [Route("resetPassword")]

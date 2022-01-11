@@ -215,6 +215,25 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message });
             }
         }
+        [HttpPut]
+        [Route("uploadImage")]
+        public IActionResult UploadImage(long noteId, IFormFile image)
+        {
+            try
+            {
+                bool result = this.notesBL.UploadImage(noteId, image);
+                if (result.Equals(true))
+                {
+                    return this.Ok(new { Status = true, Message = "Upload Image Successfully", Data = noteId });
+                }
+
+                return this.BadRequest(new { Status = false, Message = result });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
+            }
+        }
     }
 }
 

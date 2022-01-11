@@ -12,14 +12,15 @@ namespace RepositoryLayer.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long CollaboratorId { get; set; }
 
-        [ForeignKey("NotessssTables")]
+        [ForeignKey("NotesTable")]
         public long NotesId { get; set; }
         public Notess Notes { get; set; }
 
-        [Required]
-        public string SenderEmail { get; set; }
+        [ForeignKey("Users")]
+        public long Id { get; set; }
+        public User User { get; set; }
 
         [Required]
-        public string ReceiverEmail { get; set; }
+        public string EmailId { get; set; }
     }
 }

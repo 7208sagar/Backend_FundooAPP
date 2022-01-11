@@ -1,5 +1,6 @@
 ﻿using BussinessLayer.Interfaces;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using RepositoryLayer.Entities;
 using RepositoryLayer.Interfaces;
 using System;
@@ -138,6 +139,19 @@ namespace BussinessLayer.Services
                     throw new Exception(ex.Message);
                 }
             }
+
+        public bool UploadImage(long noteId, IFormFile image)
+        {
+            try
+            {
+                bool result = this.notesRL.UploadImage(noteId, image);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     } 
 }
 

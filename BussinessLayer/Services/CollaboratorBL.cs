@@ -1,5 +1,6 @@
 ﻿using BussinessLayer.Interfaces;
 using CommonLayer.Model;
+using RepositoryLayer.Entities;
 using RepositoryLayer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,19 @@ namespace BussinessLayer.Services
                 throw;
             }
         }
+
+        public IEnumerable<Collaborator> GetAllCollaborator()
+        {
+            try
+            {
+                return this.collaboratorRL.GetAllCollaborator();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool RemoveCollaborator(long collaboratorId)
         {
             try
