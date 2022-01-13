@@ -32,7 +32,7 @@ namespace RepositoryLayer.Services
             try
             {
                 Labelss newLabel = new Labelss();
-                newLabel.Labels = model.Label;
+                newLabel.Labels = model.Labels;
                 newLabel.NotesId = model.NotesId;
                 newLabel.Id = Id;
                 //Adding the data to database

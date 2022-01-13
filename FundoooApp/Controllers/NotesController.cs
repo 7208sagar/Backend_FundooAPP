@@ -245,7 +245,12 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
             }
         }
-        [HttpGet("redis")]
+        /// <summary>
+        /// Redis cache
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("redis")]
         public async Task<IActionResult> GetAllCustomersUsingRedisCache()
         {
             var cacheKey = "notessList";
