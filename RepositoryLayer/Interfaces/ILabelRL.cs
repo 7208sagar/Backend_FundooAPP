@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BussinessLayer.Interfaces
+namespace RepositoryLayer.Interfaces
 {
-    public interface ILabelBL
+    public interface ILabelRL
     {
-       public bool CreateLabels(LabelModel model, long Id);
+       public bool Createlabels(LabelModel model,long Id);
         IEnumerable<Labelss> RetrieveLables();
         bool RemoveLable(long lableId);
     }

@@ -14,8 +14,14 @@ using System.Text;
 
 namespace RepositoryLayer.Services
 {
+    /// <summary>
+    /// NoteRL class
+    /// </summary>
     public class NotesRL : INotesRL
     {
+        /// <summary>
+        /// The user context
+        /// </summary>
         Context context;
         IConfiguration configuration;
         public NotesRL(Context context, IConfiguration configuration)
@@ -23,6 +29,11 @@ namespace RepositoryLayer.Services
             this.context = context;
            this.configuration = configuration;
     }
+        /// <summary>
+        /// Adds the notes
+        /// </summary>
+        /// <param name="notes"></param>
+        /// <returns></returns>
         public bool CreateNote(NotesModel notes)
         {
             try
@@ -54,6 +65,10 @@ namespace RepositoryLayer.Services
                 throw e;
             }
         }
+        /// <summary>
+        /// Retrieves the notes.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Notess> GetAllNotes()
         {
             try
@@ -65,6 +80,11 @@ namespace RepositoryLayer.Services
                 throw;
             }
         }
+        /// <summary>
+        /// Remove notes
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public bool RemoveNote(long noteId)
         {
             try
@@ -86,6 +106,11 @@ namespace RepositoryLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// PinOrUnpin the notes
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public string PinOrUnpin(long noteId)
         {
             try
@@ -114,6 +139,11 @@ namespace RepositoryLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// Update the Notes
+        /// </summary>
+        /// <param name="notes"></param>
+        /// <returns></returns>
         public string UpdateNotes(Notess notes)
         {
             try
@@ -131,6 +161,11 @@ namespace RepositoryLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// Archieve the notes
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         public string ArchieveOrUnarchieve(long noteId)
         {
             try
@@ -159,6 +194,12 @@ namespace RepositoryLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// Adds the colour.
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public bool AddColour(long noteId, string color)
         {
             try
@@ -207,6 +248,10 @@ namespace RepositoryLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        ///  Retrieve the TrashNotes
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<NotesModel> RetrieveTrashNotes()
         {
             try
@@ -228,6 +273,12 @@ namespace RepositoryLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// add Reminder for Notes
+        /// </summary>
+        /// <param name="notesId"></param>
+        /// <param name="reminder"></param>
+        /// <returns></returns>
         public bool AddReminder(long notesId, string reminder)
         {
             try
@@ -247,6 +298,12 @@ namespace RepositoryLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+        /// <summary>
+        /// Uploads the image.
+        /// </summary>
+        /// <param name="noteId"></param>
+        /// <param name="noteimage"></param>
+        /// <returns></returns>
         public bool UploadImage(long noteId, IFormFile noteimage)
         {
             try

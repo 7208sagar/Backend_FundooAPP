@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace FundoooApp.Controllers
 {
+    /// <summary>
+    /// CollaboratorController class
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CollaboratorController : ControllerBase
@@ -20,6 +23,11 @@ namespace FundoooApp.Controllers
         {
             this.collaboratorBL = collaboratorBL;
         }
+        /// <summary>
+        /// Adds the collaborators
+        /// </summary>
+        /// <param name="collaborators"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("addCollaborators")]
         public ActionResult AddCollaborators(CollaboratorModel collaborators)
@@ -37,6 +45,11 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message });
             }
         }
+        /// <summary>
+        /// Deletes the collaborator.
+        /// </summary>
+        /// <param name="collaboratorId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("collaboratorId")]
         public IActionResult RemoveCollaborator(long collaboratorId)
@@ -55,7 +68,12 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message });
             }
         }
-        [HttpGet("CollaboratorAllData")]
+        /// <summary>
+        /// Retrieves all collaborator
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("CollaboratorAllData")]
         public IActionResult GetAllData()
         {
             try
@@ -65,7 +83,7 @@ namespace FundoooApp.Controllers
                 {
                     return BadRequest(new { Success = false, message = "No collaborator Found" });
                 }
-                return Ok(new { Success = true, message = "  Retrieve Collaborator Successfully" });
+                return Ok(new { Success = true, message = "  Retrieve Collaborator Successfully", Data = collaborators });
             }
             catch (Exception)
             {

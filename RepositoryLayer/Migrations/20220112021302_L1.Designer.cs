@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RepositoryLayer;
 
 namespace RepositoryLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220112021302_L1")]
+    partial class L1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +50,7 @@ namespace RepositoryLayer.Migrations
                     b.ToTable("CollaboratorT");
                 });
 
-            modelBuilder.Entity("RepositoryLayer.Entities.Labelss", b =>
+            modelBuilder.Entity("RepositoryLayer.Entities.Label", b =>
                 {
                     b.Property<long>("LableId")
                         .ValueGeneratedOnAdd()
@@ -73,7 +75,7 @@ namespace RepositoryLayer.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("LabelT");
+                    b.ToTable("Label");
                 });
 
             modelBuilder.Entity("RepositoryLayer.Entities.Notess", b =>
@@ -179,7 +181,7 @@ namespace RepositoryLayer.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("RepositoryLayer.Entities.Labelss", b =>
+            modelBuilder.Entity("RepositoryLayer.Entities.Label", b =>
                 {
                     b.HasOne("RepositoryLayer.Entities.Notess", "Notes")
                         .WithMany("Labels")

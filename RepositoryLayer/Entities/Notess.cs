@@ -34,5 +34,6 @@ namespace RepositoryLayer.Entities
         public DateTime? Createdat { get; set; }
         public DateTime? Modifiedat { get; set; }
         public ICollection<Collaborator> Collaborator { get; set; }
+        public ICollection<Labelss> Labels { get; set; }
     }
 }

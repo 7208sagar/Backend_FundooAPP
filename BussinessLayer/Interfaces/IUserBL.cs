@@ -8,7 +8,7 @@ using System.Text;
 namespace BussinessLayer.Interfaces
 {
     /// <summary>
-    ///This is an interface of the UserBL class
+    /// This is an interface of the UserBL class
     /// </summary>
     public interface IUserBL
     {

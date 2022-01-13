@@ -40,23 +40,22 @@ namespace FundoooApp
             services.AddTransient<INotesRL, NotesRL>();
             services.AddTransient<ICollaboratorBL, CollaboratorBL>();
             services.AddTransient<ICollaboratorRL, CollaboratorRL>();
-            //services.AddControllersWithViews()
-            //.AddNewtonsoftJson(options =>
-            //options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            //);
+            services.AddTransient<ILabelBL, LabelBL>();
+            services.AddTransient<ILabelRL, LabelRL>();
+            services.AddMemoryCache();
             services.AddDbContext<Context>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:FundooDB"]));
             services.AddControllers();
-            // Enable Swagger
+            /// Enable Swagger
             services.AddSwaggerGen(swagger =>
             {
-                //This is to generate the Default UI of Swagger Documentation  
+                // This is to generate the Default UI of Swagger Documentation  
                 swagger.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "JWT Token Authentication API",
                     Description = "ASP.NET Core 3.1 Web API"
                 });
-                // To Enable authorization using Swagger (JWT)  
+                /// To Enable authorization using Swagger (JWT)  
                 swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
@@ -77,7 +76,7 @@ namespace FundoooApp
                                     Id = "Bearer"
                                 }
                             },
-                            new string[] {}
+                            new string[]{}
                     }
                 });
             });
@@ -98,11 +97,15 @@ namespace FundoooApp
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["Jwt:Issuer"],
                     ValidAudience = Configuration["Jwt:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])) //Configuration["JwtToken:SecretKey"]   
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))   
                 };
             });
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = "localhost:6379";
+            });
         }
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

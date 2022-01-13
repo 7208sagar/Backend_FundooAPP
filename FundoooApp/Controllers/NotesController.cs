@@ -5,10 +5,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
+using RepositoryLayer;
 using RepositoryLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FundoooApp.Controllers
@@ -19,9 +24,16 @@ namespace FundoooApp.Controllers
     public class NotesController : ControllerBase
     {
         private readonly INotesBL notesBL;
-        public NotesController(INotesBL notesBL)
+        private readonly IMemoryCache memoryCache;
+        private readonly Context context;
+        private readonly IDistributedCache distributedCache;
+        
+        public NotesController(INotesBL notesBL, IMemoryCache memoryCache, Context context, IDistributedCache distributedCache)
         {
             this.notesBL = notesBL;
+            this.memoryCache = memoryCache;
+            this.context = context;
+            this.distributedCache = distributedCache;
         }
         [HttpPost]
         public IActionResult CreateNote(NotesModel notes)
@@ -50,7 +62,7 @@ namespace FundoooApp.Controllers
                 IEnumerable<Notess> notes = notesBL.GetAllNotes();
                 if (notes == null)
                 {
-                    return BadRequest(new { Success = false, message = "No Notes Found" });
+                    return this.BadRequest(new { Success = false, message = "No Notes Found" });
                 }
                 return Ok(new { Success = true, message = " ", notes });
             }
@@ -59,7 +71,7 @@ namespace FundoooApp.Controllers
                 throw;
             }
         }
-       
+
         [HttpDelete]
         [Route("{noteId}")]
         public IActionResult DeleteNotes(long noteId)
@@ -127,7 +139,6 @@ namespace FundoooApp.Controllers
                 if (result != null)
                 {
                     return this.Ok(new { Success = true, message = "Archieved successfully " });
-
                 }
 
                 return this.BadRequest(new { Status = false, Message = result });
@@ -234,6 +245,26 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
             }
         }
+        [HttpGet("redis")]
+        public async Task<IActionResult> GetAllCustomersUsingRedisCache()
+        {
+            var cacheKey = "notessList";
+            string serializedNotessList;
+            var notessList = new List<Notess>();
+            var redisNotessList = await distributedCache.GetAsync(cacheKey);
+            if (redisNotessList != null)
+            {
+                serializedNotessList = Encoding.UTF8.GetString(redisNotessList);
+                notessList = JsonConvert.DeserializeObject<List<Notess>>(serializedNotessList);
+            }
+            else
+            {
+                notessList = await context.NotessssTables.ToListAsync();
+                serializedNotessList = JsonConvert.SerializeObject(notessList);
+                redisNotessList = Encoding.UTF8.GetBytes(serializedNotessList);
+                notessList = (List<Notess>)notesBL.GetAllNotes();
+            }
+            return Ok(notessList);
+        }
     }
 }
-

@@ -34,6 +34,8 @@ namespace RepositoryLayer
         [DataType(DataType.DateTime)]
         public DateTime? Modifiedat { get; set; }
         public ICollection<Notess> Notes { get; set; }
+        public ICollection<Collaborator> Collaborator { get; set; }
+        public ICollection<Labelss> Labels { get; set; }
     }
 
 }
