@@ -1,20 +1,19 @@
-﻿using BussinessLayer.Interfaces;
-using CommonLayer.Model;
-using CommonLayer.ResponseModel;
-using RepositoryLayer;
-using RepositoryLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BussinessLayer.Services
+﻿namespace BussinessLayer.Services
 {
+    using System;
+    using System.Text;
+    using System.Collections.Generic;
+    using BussinessLayer.Interfaces;
+    using CommonLayer.Model;
+    using CommonLayer.ResponseModel;
+    using RepositoryLayer;
+    using RepositoryLayer.Interfaces;
     /// <summary>
     /// This is a class for UserBL
     /// </summary>
     public class UserBL : IUserBL
     {
-        IUserRL userRL;
+       private IUserRL userRL;
         /// <summary>
         /// Initializes a new instance of the UserBL class
         /// </summary>
@@ -37,7 +36,7 @@ namespace BussinessLayer.Services
             }
             catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
 
@@ -54,7 +53,7 @@ namespace BussinessLayer.Services
             }
             catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
 
@@ -80,7 +79,7 @@ namespace BussinessLayer.Services
             }
             catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
 
@@ -103,4 +102,3 @@ namespace BussinessLayer.Services
         }
     }
 }
-

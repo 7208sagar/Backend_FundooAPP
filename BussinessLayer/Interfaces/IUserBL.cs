@@ -1,12 +1,11 @@
-﻿using CommonLayer.Model;
-using CommonLayer.ResponseModel;
-using RepositoryLayer;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BussinessLayer.Interfaces
+﻿namespace BussinessLayer.Interfaces
 {
+    using System;
+    using System.Text;
+    using System.Collections.Generic;
+    using CommonLayer.Model;
+    using CommonLayer.ResponseModel;
+    using RepositoryLayer;
     /// <summary>
     /// This is an interface of the UserBL class
     /// </summary>

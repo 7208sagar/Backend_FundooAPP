@@ -78,5 +78,24 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
             }
         }
+        [HttpPut]
+        [Route("update")]
+        public IActionResult EditLabel(NewLabelModel model, long labelId)
+        {
+            try
+            {
+                bool result = this.labelBL.EditLabel(model, labelId);
+                if (result.Equals(true))
+                {
+                    return this.Ok(new { Status = true, Message = "update Lable Sucessfully", data = model });
+                }
+
+                return this.BadRequest(new { Status = false, Message = "Unable to update lable : Enter valid Id" });
+            }
+            catch (Exception ex)
+            {
+                return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
+            }
+        }
     }
 }

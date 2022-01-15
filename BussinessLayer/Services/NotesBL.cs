@@ -1,19 +1,17 @@
-﻿using BussinessLayer.Interfaces;
-using CommonLayer.Model;
-using Microsoft.AspNetCore.Http;
-using RepositoryLayer.Entities;
-using RepositoryLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BussinessLayer.Services
+﻿namespace BussinessLayer.Services
 {
+    using System;
+    using System.Text;
+    using System.Collections.Generic;
+    using BussinessLayer.Interfaces;
+    using CommonLayer.Model;
+    using Microsoft.AspNetCore.Http;
+    using RepositoryLayer.Entities;
+    using RepositoryLayer.Interfaces;
     public class NotesBL : INotesBL
     {
-        INotesRL notesRL;
+       private INotesRL notesRL;
         public NotesBL(INotesRL notesRL)
-
         {
             this.notesRL = notesRL;
         }
@@ -63,7 +61,7 @@ namespace BussinessLayer.Services
             }
             catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
         public IEnumerable<Notess> GetAllNotes()
@@ -127,18 +125,18 @@ namespace BussinessLayer.Services
             }
         }
 
-        public string UpdateNotes(Notess notes)
+        public bool UpdateNotes(UpdateNotesModel model, long notesId)
+        {
+            try
             {
-                try
-                {
-                    string result = this.notesRL.UpdateNotes(notes);
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+                bool result = this.notesRL.UpdateNotes(model,notesId);
+                return result;
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         public bool UploadImage(long noteId, IFormFile image)
         {
@@ -154,4 +152,3 @@ namespace BussinessLayer.Services
         }
     } 
 }
-

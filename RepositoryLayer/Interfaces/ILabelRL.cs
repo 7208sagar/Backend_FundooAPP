@@ -11,5 +11,6 @@ namespace RepositoryLayer.Interfaces
        public bool Createlabels(LabelModel model,long Id);
         IEnumerable<Labelss> RetrieveLables();
         bool RemoveLable(long lableId);
+        bool EditLabel(NewLabelModel model, long labelId);
     }
 }

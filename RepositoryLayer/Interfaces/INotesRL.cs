@@ -13,12 +13,12 @@ namespace RepositoryLayer.Interfaces
         IEnumerable<Notess> GetAllNotes();
         bool RemoveNote(long noteId);
         public string PinOrUnpin(long noteId);
-        string UpdateNotes(Notess notes);
         string ArchieveOrUnarchieve(long noteId);
         bool AddColour(long noteId, string color);
         string IsTrash(int noteId);
         IEnumerable<NotesModel> RetrieveTrashNotes();
         bool AddReminder(long notesId, string reminder);
         bool UploadImage(long noteId, IFormFile image);
+        bool UpdateNotes(UpdateNotesModel model, long notesId);
     }
 }

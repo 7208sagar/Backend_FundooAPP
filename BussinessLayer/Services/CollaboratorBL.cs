@@ -1,29 +1,28 @@
-﻿using BussinessLayer.Interfaces;
-using CommonLayer.Model;
-using RepositoryLayer.Entities;
-using RepositoryLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BussinessLayer.Services
+﻿namespace BussinessLayer.Services
 {
+    using System;
+    using System.Text;
+    using System.Collections.Generic;
+    using BussinessLayer.Interfaces;
+    using CommonLayer.Model;
+    using RepositoryLayer.Entities;
+    using RepositoryLayer.Interfaces;
     public class CollaboratorBL : ICollaboratorBL
     {
-        ICollaboratorRL collaboratorRL;
+        private ICollaboratorRL collaboratorRL;
         public CollaboratorBL(ICollaboratorRL collaboratorRL)
         {
             this.collaboratorRL = collaboratorRL;
         }
-        public bool AddCollaborator(CollaboratorModel collaborators)
+        public bool AddCollaborator(CollaboratorModel collaborators, long Id)
         {
             try
             {
-                return this.collaboratorRL.AddCollaborator(collaborators);
+                return this.collaboratorRL.AddCollaborator(collaborators,Id);
             }
             catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
 
@@ -47,7 +46,7 @@ namespace BussinessLayer.Services
             }
             catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
     }

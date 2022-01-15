@@ -144,21 +144,24 @@ namespace RepositoryLayer.Services
         /// </summary>
         /// <param name="notes"></param>
         /// <returns></returns>
-        public string UpdateNotes(Notess notes)
+        public bool UpdateNotes(UpdateNotesModel model, long NotesId)
         {
             try
             {
-                if (notes.NotesId != 0)
+                var note = this.context.NotessssTables.Where(x => x.NotesId == NotesId).SingleOrDefault();
+                if (note != null)
                 {
-                    this.context.Entry(notes).State = EntityState.Modified;
+                    note.Title = model.Title;
+                    note.Message = model.Message;
+                    this.context.Update(note);
                     this.context.SaveChanges();
-                    return "UPDATE SUCCESSFULL";
+                    return true;
                 }
-                return "Updation Failed";
+                return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw;
             }
         }
         /// <summary>

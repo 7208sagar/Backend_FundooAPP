@@ -51,7 +51,7 @@ namespace RepositoryLayer.Services
             }
             catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
         private string GenerateJWTToken(string EmailId,long Id)
@@ -97,7 +97,7 @@ namespace RepositoryLayer.Services
             }
             catch (Exception e)
             {
-                throw;
+                throw new Exception(e.Message);
             }
         }
         public IEnumerable<User> GetAlldata()

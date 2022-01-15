@@ -1,4 +1,5 @@
 ﻿using CommonLayer.Model;
+using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.Entities;
 using RepositoryLayer.Interfaces;
 using System;
@@ -82,6 +83,25 @@ namespace RepositoryLayer.Services
                     var lables = this.context.LabelT.Where(x => x.LableId == lableId).SingleOrDefault();
                     this.context.LabelT.Remove(lables);
                     this.context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public bool EditLabel(NewLabelModel model, long labelId)
+        {
+            try
+            {
+                var lab = this.context.LabelT.Where(x => x.LableId == labelId).SingleOrDefault();
+                if (lab != null)
+                {
+                    lab.Labels = model.Labels;
+                    this.context.Update(lab);
+                    this.context.SaveChanges();
                     return true;
                 }
                 return false;

@@ -34,7 +34,8 @@ namespace FundoooApp.Controllers
         {
             try
             {
-                if (this.collaboratorBL.AddCollaborator(collaborators))
+                var Id = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "Id").Value);
+                if (this.collaboratorBL.AddCollaborator(collaborators,Id))
                 {
                     return this.Ok(new { Status = true, Message = "Sucessfully Added New Collaborator", Data = collaborators });
                 }

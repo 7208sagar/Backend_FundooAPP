@@ -92,22 +92,22 @@ namespace FundoooApp.Controllers
             }
         }
         [HttpPut]
-        [Route("updateNotes")]
-        public IActionResult UpdateNotes([FromBody] Notess notes)
+        [Route("UpdateNotes")]
+        public IActionResult NotesEdit(UpdateNotesModel model, long NotesId)
         {
             try
             {
-                var result = this.notesBL.UpdateNotes(notes);
-                if (result.Equals("UPDATE SUCCESSFULL"))
+                bool result = this.notesBL.UpdateNotes(model, NotesId);
+                if (result.Equals(true))
                 {
-                    return this.Ok(new { Success = true, message = "Note Updated successfully " });
+                    return this.Ok(new { Status = true, Message = "update notes Sucessfully", data = model });
                 }
 
-                return this.BadRequest(new { Status = false, Message = "Error while updating notes" });
+                return this.BadRequest(new { Status = false, Message = "Unable to update notes Enter valid Id" });
             }
             catch (Exception ex)
             {
-                return this.NotFound(new { Status = false, Message = ex.Message });
+                return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
             }
         }
         [HttpPut]
