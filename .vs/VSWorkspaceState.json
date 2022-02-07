@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BussinessLayer",
+    "\\BussinessLayer\\Services",
+    "\\CommonLayer",
+    "\\CommonLayer\\Model",
+    "\\FundoooApp",
+    "\\RepositoryLayer",
+    "\\RepositoryLayer\\Entities"
+  ],
+  "SelectedNode": "\\RepositoryLayer\\Entities\\Labelss.cs",
+  "PreviewInSolutionExplorer": false
+}

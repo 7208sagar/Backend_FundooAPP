@@ -7,6 +7,9 @@
     using CommonLayer.Model;
     using RepositoryLayer.Entities;
     using RepositoryLayer.Interfaces;
+    /// <summary>
+    ///  CollaboratorBL class
+    /// </summary>
     public class CollaboratorBL : ICollaboratorBL
     {
         private ICollaboratorRL collaboratorRL;
@@ -14,11 +17,12 @@
         {
             this.collaboratorRL = collaboratorRL;
         }
+
         public bool AddCollaborator(CollaboratorModel collaborators, long Id)
         {
             try
             {
-                return this.collaboratorRL.AddCollaborator(collaborators,Id);
+                return this.collaboratorRL.AddCollaborator(collaborators, Id);
             }
             catch (Exception e)
             {

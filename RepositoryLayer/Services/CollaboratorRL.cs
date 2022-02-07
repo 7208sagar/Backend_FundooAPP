@@ -15,13 +15,13 @@ namespace RepositoryLayer.Services
         {
             this.context = context;
         }
-        public bool AddCollaborator(CollaboratorModel collaborators,long Id)
+        public bool AddCollaborator(CollaboratorModel collaborators, long Id)
         {
             try
             {
                 var Collaborator = this.context.NotessssTables.Where(x =>x.NotesId == collaborators.NotesId).SingleOrDefault();
                 var Collaborator1 = this.context.Users.Where(x => x.EmailId == collaborators.EmailId).SingleOrDefault();
-                if (Collaborator != null && Collaborator1!=null)
+                if (Collaborator != null && Collaborator1 !=null)
                 {
                     Collaborator newCollaborator = new Collaborator();
                     newCollaborator.Id = Id;

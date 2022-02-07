@@ -8,7 +8,7 @@ namespace RepositoryLayer.Interfaces
 {
     public interface ILabelRL
     {
-       public bool Createlabels(LabelModel model,long Id);
+       public bool Createlabels(LabelModel model, long Id);
         IEnumerable<Labelss> RetrieveLables();
         bool RemoveLable(long lableId);
         bool EditLabel(NewLabelModel model, long labelId);

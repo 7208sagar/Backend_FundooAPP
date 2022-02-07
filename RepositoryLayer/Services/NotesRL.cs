@@ -243,7 +243,6 @@ namespace RepositoryLayer.Services
                     string message = "Note Restored";
                     return message;
                 }
-
                 return "Unable to Trash or Restored notes"; ;
             }
             catch (Exception ex)

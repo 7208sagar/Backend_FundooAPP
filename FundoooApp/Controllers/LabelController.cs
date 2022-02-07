@@ -14,6 +14,7 @@ namespace FundoooApp.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    ///LabelController class
     public class LabelController : ControllerBase
     {
         private readonly ILabelBL labelBL;
@@ -21,6 +22,12 @@ namespace FundoooApp.Controllers
         {
             this.labelBL = labelBL;
         }
+
+        /// <summary>
+        /// Add label
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("addLable")]
         public IActionResult CreateLabels(LabelModel model)
@@ -41,6 +48,10 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
             }
         }
+        /// <summary>
+        /// RetrieveAllLables
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult RetrieveAllLables()
         {
@@ -59,6 +70,11 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
             }
         }
+        /// <summary>
+        /// Delete label with id
+        /// </summary>
+        /// <param name="lableId"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("lableId")]
         public IActionResult DeleteLable(long lableId)
@@ -78,6 +94,12 @@ namespace FundoooApp.Controllers
                 return this.NotFound(new { Status = false, Message = ex.Message, InnerException = ex.InnerException });
             }
         }
+        /// <summary>
+        /// Update label
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="labelId"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("update")]
         public IActionResult EditLabel(NewLabelModel model, long labelId)

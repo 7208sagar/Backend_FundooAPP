@@ -6,7 +6,6 @@
     using CommonLayer.Model;
     using RepositoryLayer.Entities;
     public interface ICollaboratorBL
-
     {
        public bool AddCollaborator(CollaboratorModel collaborators, long Id);
         public bool RemoveCollaborator(long collaboratorId);

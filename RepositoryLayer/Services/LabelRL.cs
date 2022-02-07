@@ -12,7 +12,7 @@ namespace RepositoryLayer.Services
     /// <summary>
     /// LabelRL class
     /// </summary>
-   public class LabelRL:ILabelRL
+   public class LabelRL: ILabelRL
     {
         /// <summary>
         /// User context
@@ -28,7 +28,7 @@ namespace RepositoryLayer.Services
         /// <param name="model"></param>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public bool Createlabels(LabelModel model,long Id)
+        public bool Createlabels(LabelModel model, long Id)
         {
             try
             {

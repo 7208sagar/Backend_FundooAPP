@@ -15,6 +15,7 @@
         {
             this.notesRL = notesRL;
         }
+
         public bool AddColor(long noteId, string color)
         {
             try
@@ -52,6 +53,7 @@
             {
                 throw new Exception(ex.Message);
             }
+
         }
         public bool CreateNote(NotesModel notes)
         {
@@ -63,6 +65,7 @@
             {
                 throw new Exception(e.Message);
             }
+
         }
         public IEnumerable<Notess> GetAllNotes()
         {
@@ -129,7 +132,7 @@
         {
             try
             {
-                bool result = this.notesRL.UpdateNotes(model,notesId);
+                bool result = this.notesRL.UpdateNotes(model, notesId);
                 return result;
             }
             catch (Exception ex)
